@@ -63,9 +63,18 @@ Project yang skill-nya sudah di-commit tidak perlu install lagi: cukup clone pro
 
 ## Update
 
+Tempel `prompts/reinstall.md` ke agent di T3 Code, atau jalankan manual:
+
 ```bash
 git -C ~/repo-playbook pull
-bash ~/repo-playbook/install.sh /path/ke/project   # lalu commit
+bash ~/repo-playbook/install.sh /path/ke/project   # lalu commit file playbook saja
+```
+
+Project tidak ter-update otomatis; setiap project terkunci di versi pada `.agents/playbook/VERSION`. Untuk melihat project yang tertinggal versinya:
+
+```bash
+echo "terbaru: $(git -C ~/repo-playbook rev-parse --short HEAD)"
+for v in ~/*/.agents/playbook/VERSION; do echo "$(cat "$v")  ${v%/.agents/playbook/VERSION}"; done
 ```
 
 ## Tes
